@@ -84,9 +84,7 @@ Rewritten UI which brings lot of new features, usability enhancements to S5 / S8
 ## Compatibility
 
 - Built for **Traktor Pro 4**.
-- Bundle trimmed to **S5/S8** mappings and screens only (other device templates removed).
-- S5 uses S8 screen components; all bindings routed through `Defines/AppPaths.qml` to cushion NI property name changes.
-- QML imports favor **QtQuick 2.0** to avoid version-pin issues in TP4.
+- Bundle made for Traktor **S5/S8** 
 
 ---
 
@@ -107,11 +105,4 @@ Settings.tsi             # Preferences snapshot (reference)
 
 ---
 
-## Roadmap (optional add-ons)
-
-- Single-gesture HUD toggle (bindable) for Minimal/Performance.  
-- Daylight/Club theme presets that flip multiple visual settings at once.  
-- Per-deck role profiles (e.g., A/B track, C/D stems) with automatic HUD & pad-layer tweaks.
-
----
 
