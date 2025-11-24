@@ -173,7 +173,9 @@ function readFileRequest(path) {
 
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
-        request.open('GET', path, false);
+        // Use an async request so the UI thread is not blocked and
+        // timeouts/errors surface through the Promise handlers.
+        request.open('GET', path, true);
         request.onreadystatechange = function () {
             // https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest
             // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
