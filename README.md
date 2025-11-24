@@ -92,11 +92,12 @@ A refactored QML bundle for **Native Instruments Traktor Pro 4** that preserves 
 ```
 qml/
   CSI/S5/                # S5 mapping modules (encoders, pads, side, mixer, deck)
-  Screens/S8/Views/...   # Deck & Browser UI used by S5 screens
-  Defines/AppPaths.qml   # Centralized app property path helpers
-  Helpers/               # Utilities (LED maps, helpers)
-  Settings/              # QML settings panes (if present)
-  Assets/                # Fonts, images
+  CSI/S8/                # S8 mapping modules (deck, mixer, channel)
+  CSI/Common/            # Shared modules (Deck_S8Style, BrowserModule, Settings)
+  Screens/S8/            # Deck & Browser UI used by S5 and S8 screens
+  Defines/               # Global QML definitions (ScreenView, LoopSize, PadsMode, etc.)
+  Helpers/               # Utilities (LED maps, DeckHelpers, Settings.js, FileSystem.js)
+  Settings/              # Customization modules (CustomWaveform, DeckHeader, PadFXs)
 README.md
 Settings.tsi             # Preferences snapshot (reference)
 ```
