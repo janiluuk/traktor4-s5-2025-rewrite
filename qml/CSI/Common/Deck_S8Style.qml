@@ -1114,6 +1114,17 @@ Module
   Wire { from: "%surface%.back";                to: "BrowserBackTimer.input" }
   Wire { from: "BrowserBackTimer.output"; to: SetPropertyAdapter { path: propertiesPath + ".screen_view"; value: ScreenView.deck } enabled: module.screenView.value == ScreenView.browser }
 
+  // On-screen Settings menu toggle
+  Wire {
+    enabled: shift && (module.screenView.value != ScreenView.browser) && (screenOverlay.value == Overlay.none)
+    from: "%surface%.back"
+    to: ButtonScriptAdapter {
+      onPress: {
+        module.screenView.value = module.screenView.value == ScreenView.settings ? ScreenView.deck : ScreenView.settings;
+      }
+    }
+  }
+
   //------------------------------------------------------------------------------------------------------------------
   //  Loop/Beatjump pad sizes wiring
   //------------------------------------------------------------------------------------------------------------------
