@@ -7,10 +7,11 @@ A refactored QML bundle for **Native Instruments Traktor Pro 4** that preserves 
 ## What’s inside
 
 ### Controller features (S5)
-- **Browse Encoder upgrades**  
+- **Browse Encoder upgrades**
   Turn = list navigation · **Shift+Turn** = cycle sort column · **Push** = load to focused deck · **Shift+Push** = pre-listen.
-- **Loop Encoder ergonomics**  
+- **Loop Encoder ergonomics**
   Turn = loop size step · **Push** = set in/out · **Shift** = fine step.
+  - In Browser Sorting mode, press the Loop Encoder to flip the sort direction (ascending/descending) while keeping your chosen column.
 - **Touch Strips, performance-first**
   Default = pitch bend · **Shift** = seek (fast, precise scrubbing).
 - **Cue drops without leaving the deck**
@@ -26,7 +27,7 @@ A refactored QML bundle for **Native Instruments Traktor Pro 4** that preserves 
   - S5/S8 Controller Settings (touch controls, touchstrip, LEDs, MIDI/Stem options)
   - Map Settings (buttons, encoders, pads, faders)
   - Display Settings (general, browser, track/stem deck, remix deck)
-  - Other Settings (timers, fixes, mods, import/export)
+  - Other Settings (timers, fixes, mods, import/export, Mix Recorder control with elapsed time)
 
 ### On-device screens (S5 via S8 views)
 - **Deck HUD clarity**  
@@ -80,16 +81,46 @@ A refactored QML bundle for **Native Instruments Traktor Pro 4** that preserves 
 
 ## Controller behavior (S5 quick sheet)
 
-- **Browse Encoder**:  
-  Turn = navigate · **Shift+Turn** = sort column · **Push** = load · **Shift+Push** = pre-listen  
-- **Loop Encoder**:  
-  Turn = size · **Push** = loop in/out · **Shift** = fine step  
+- **Browse Encoder**:
+  Turn = navigate · **Shift+Turn** = sort column · **Push** = load · **Shift+Push** = pre-listen
+- **Loop Encoder**:
+  Turn = size · **Push** = loop in/out · **Shift** = fine step · **Browser Sorting mode**: press to invert sort direction
 - **Touch Strips**:
   Default = bend · **Shift** = seek
 - **Cue (Shift)**:
   Tap = restart from beginning; **Hold** = store a new Active Cue at the current playhead
 - **Pads**:
   Primary = Hotcues/Loops · Alternate layers on **Shift** · LED colors reflect cue types
+
+### Quick how-to guides
+
+- **Open the on-controller Settings menu**
+  1. Hold **Shift** and press **Back** while you are on a deck or FX view (not in the Browser).
+  2. Turn the Browse Encoder to move, press it to enter/confirm, and press **Back** again to exit a section.
+  3. Repeat **Shift + Back** to close the menu and return to the deck view.
+
+- **Start or stop the Mix Recorder from the controller**
+  1. Open the Settings menu and navigate to **Other Settings → Recording → Mix Recorder**.
+  2. Press the Browse Encoder on **Start Recording** (or **Stop Recording**). The second line shows the elapsed time for the current take so you can monitor length without looking at the laptop.
+  3. Exit with **Back**; recording continues until you stop it from this entry or in Traktor’s UI.
+
+- **Set an Active Cue from the controller**
+  1. Play or pause the track where you want the cue.
+  2. Hold **Shift** and press **Cue** for a moment—Traktor stores that playhead position as the new Active Cue.
+  3. Tap **Shift + Cue** (without holding) any time to jump back to that saved start point.
+
+- **Flip browser sort direction**
+  1. Enter Browser Sorting mode (Shift + Browse turn) to pick a column.
+  2. Press the **Loop Encoder** once to toggle between ascending and descending without changing the chosen column.
+
+- **Create custom Pad FX presets**
+  1. Open `qml/Settings/PadFXs.qml` and scroll past the prefilled Slot 1 examples.
+  2. For any empty slot (2.1–8.8), add a `name`, choose a pad `color`, set `routing` and three `effect` blocks with `drywet`/`knob`/`button` values.
+  3. Use the valid colors, routings, and effect names listed at the top of `PadFXs.qml`, save the file, and reload Traktor to see your pads.
+
+### Pad FX presets
+- **Slot 1 (factory-populated):** Echo Fade · Echo Multi · Techno Phil · Space Toys · Echo Fade* (sweep) · Echo Multi* (macro) · Filter Pulse* · Electro Flyby*.
+- **Create your own:** Edit `qml/Settings/PadFXs.qml` → populate the blank PadFX slots (2.1–8.8) with a `name`, `color`, `routing`, three `effect` slots, and initial `drywet`/`knob`/`button` values. Use the supported color list, routing types, and effect names documented at the top of the file as the source of truth. Save and reload Traktor to pick up changes.
 
 ---
 
