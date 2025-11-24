@@ -7,17 +7,24 @@ A refactored QML bundle for **Native Instruments Traktor Pro 4** that preserves 
 ## What’s inside
 
 ### Controller features (S5)
-- **Browse Encoder upgrades**
-  Turn = list navigation · **Shift+Turn** = cycle sort column · **Push** = load to focused deck · **Shift+Push** = pre-listen.
-- **Loop Encoder ergonomics**
-  Turn = loop size step · **Push** = set in/out · **Shift** = fine step.
-  - In Browser Sorting mode, press the Loop Encoder to flip the sort direction (ascending/descending) while keeping your chosen column.
-- **Touch Strips, performance-first**
-  Default = pitch bend · **Shift** = seek (fast, precise scrubbing).
-- **Cue drops without leaving the deck**
-  Hold **Shift + Cue** to store the current track position as the Active Cue; tap **Shift + Cue** to keep the standard restart.
-- **Pads with clear layer logic**
-  Hotcues / Loops as primary layers; alternate layers on **Shift**. LEDs colored by cue type for instant recognition.
+
+| Control | Primary | With Shift | Extra notes |
+| --- | --- | --- | --- |
+| **Browse Encoder** | Turn = list navigation · **Push** = load to focused deck | **Turn** = cycle sort column · **Push** = pre-listen | Works in Browser Sorting mode for column changes. |
+| **Loop Encoder** | Turn = loop size step · **Push** = set in/out | Fine loop sizing | In Browser Sorting mode, **Push** flips sort direction without changing the active column. |
+| **Touch Strips** | Pitch bend | Seek (fast, precise scrubbing) | Performance-first feel—scrub or bend without menu diving. |
+| **Cue button** | Tap = restart from beginning | Hold = store current position as the Active Cue | Tap **Shift + Cue** later to jump back to the saved start point. |
+| **Pads** | Hotcues / Loops as primary layers | Alternate layers | LED colors mirror cue types for instant recognition. |
+
+### On-controller menu (S5/S8)
+- **Toggle:** Hold **Shift** and press **Back** to open/close the on-screen Settings menu when you’re not in the Browser.
+- **Navigation:** Browse encoder turn = move selection · **Push** = enter/confirm · **Back** = go up a level.
+- **Contents:**
+  - Traktor Settings
+  - S5/S8 Controller Settings (touch controls, touchstrip, LEDs, MIDI/Stem options)
+  - Map Settings (buttons, encoders, pads, faders)
+  - Display Settings (general, browser, track/stem deck, remix deck)
+  - Other Settings (timers, fixes, mods, import/export, Mix Recorder control with elapsed time)
 
 ### On-controller menu (S5/S8)
 - **Toggle:** Hold **Shift** and press **Back** to open/close the on-screen Settings menu when you’re not in the Browser.
