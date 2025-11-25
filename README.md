@@ -66,19 +66,49 @@ Rewritten UI which brings lot of new features, usability enhancements to S5 / S8
 
 ## Installation
 
-1. Back up the existing Traktor QML folder: `Resources/qml`.  
-2. Copy this package’s `qml/` into the TP4 installation:
+⚠️ **IMPORTANT**: Do NOT delete or replace Traktor's existing qml folder. You must MERGE the mod files with the existing installation.
 
-   **macOS**  
-   `/Applications/Traktor Pro 4.app/Contents/Resources/qml`
+1. **Back up** the existing Traktor QML folder first:
+   - **macOS**: `/Applications/Traktor Pro 4.app/Contents/Resources/qml`
+   - **Windows**: `C:\Program Files\Native Instruments\Traktor Pro 4\Resources\qml`
 
-   **Windows**  
-   `C:\Program Files\Native Instruments\Traktor Pro 4\Resources\qml`
+2. **Copy and merge** this mod's `qml/` folder contents into Traktor's qml folder:
+   - Copy each subfolder (CSI, Defines, Helpers, Screens, Settings) individually
+   - When prompted, choose **"Merge"** or **"Replace files"** (NOT "Replace folder")
+   - This preserves Traktor's core files while adding/updating mod files
+   
+   **Critical**: The CSI folder contains `S5/` and `S8/` subfolders. Merge these into the existing CSI folder - don't replace the entire CSI folder!
 
-3. Restart Traktor Pro 4.
+3. **Restart Traktor Pro 4** to load the modified controller mapping.
 
-> A `Settings.tsi` snapshot is included for reference (no overwrite required).
+> **Note**: A `Settings.tsi` snapshot is included for reference (no overwrite required).
 
+### Installation Verification
+
+After copying files, verify these key files exist:
+- `qml/CSI/qmldir` (should exist after installation)
+- `qml/CSI/S5/S5.qml` 
+- `qml/CSI/S8/S8.qml`
+- Other CSI controller files that came with Traktor should remain intact
+### Troubleshooting: Controller Not Showing Up
+
+If your S5/S8 controller doesn't appear in Traktor after installation:
+
+1. **Check if you replaced instead of merged**:
+   - Restore your backup of the original qml folder
+   - Follow the installation instructions above, making sure to MERGE folders
+
+2. **Verify the qmldir file exists**:
+   - Check that `qml/CSI/qmldir` exists in your Traktor installation
+   - This file is required for Traktor to recognize the S5 and S8 controllers
+   - The file should contain controller registrations
+
+3. **Reinstall Traktor** (last resort):
+   - If you don't have a backup and your controller still doesn't show up
+   - Reinstall Traktor Pro 4 to restore the original files
+   - Then follow the merge installation instructions correctly
+
+---
 ---
 
 ## Compatibility
