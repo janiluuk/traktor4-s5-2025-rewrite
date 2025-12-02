@@ -35,7 +35,6 @@ S8 1.0 S8/S8.qml
 3. **Broken Import References**: Some imports to non-existent folders were removed (this was helpful but didn't solve the main issue)
 
 ### Correct Directory Structure for Traktor Pro 4
-### Correct Directory Structure for Traktor Pro 4
 
 The mod should have this structure when merged with Traktor's existing qml folder:
 
