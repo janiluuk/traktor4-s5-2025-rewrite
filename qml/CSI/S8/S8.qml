@@ -37,39 +37,7 @@ Mapping
   MappingPropertyDescriptor { path: "mapping.settings.touchstrip_scratch_invert";          type: MappingPropertyDescriptor.Boolean;    value: true   }
 
   //------------------------------------------------------------------------------------------------------------------
-  // CROSS-DISPLAY INTERACTION
-  // Browser should be open on one display only
-  //------------------------------------------------------------------------------------------------------------------
-
-  property bool leftScreenViewValue: left.screenView.value
-  property bool rightScreenViewValue: right.screenView.value
-
-  onLeftScreenViewValueChanged:
-  {
-    if (left.screenView.value == ScreenView.browser && right.screenView.value == ScreenView.browser)
-    {
-      right.screenView.value = ScreenView.deck;
-    }
-  }
-
-  onRightScreenViewValueChanged:
-  {
-    if (left.screenView.value == ScreenView.browser && right.screenView.value == ScreenView.browser)
-    {
-      left.screenView.value = ScreenView.deck;
-    }
-  }
-
-  //------------------------------------------------------------------------------------------------------------------
-
-  onMappingLoaded:
-  {
-    left.initializeModule();
-    right.initializeModule();
-  }
-
-  //------------------------------------------------------------------------------------------------------------------
-  //
+  //  S8 Hardware Interface
   //------------------------------------------------------------------------------------------------------------------
 
     S8 { name: "s8" }
@@ -79,7 +47,7 @@ Mapping
   //------------------------------------------------------------------------------------------------------------------
 
   MappingPropertyDescriptor { path: "mapping.settings.led_on_brightness";      type: MappingPropertyDescriptor.Integer;   value: 100; min: 50; max: 100 }
-  MappingPropertyDescriptor { path: "mapping.settings.led_dimmed_percentage";  type: MappingPropertyDescriptor.Integer;   value: 25;  min: 25; max: 50  }
+  MappingPropertyDescriptor { path: "mapping.settings.led_dimmed_percentage";  type: MappingPropertyDescriptor.Integer;   value: 25;  min: 0; max: 50  }
 
   DirectPropertyAdapter { name: "LEDBrightnessOn";      path: "mapping.settings.led_on_brightness";      input: false }
   DirectPropertyAdapter { name: "LEDDimmedPercentage";  path: "mapping.settings.led_dimmed_percentage";  input: false }
@@ -87,6 +55,8 @@ Mapping
   Wire { from: "s8.led_on_brightness.write";      to: "LEDBrightnessOn.read"     }
   Wire { from: "s8.led_dimmed_brightness.write";  to: "LEDDimmedPercentage.read" }
 
+  //------------------------------------------------------------------------------------------------------------------
+  //  Deck Modules
   //------------------------------------------------------------------------------------------------------------------
 
   Deck_S8Style
@@ -116,6 +86,40 @@ Mapping
     name: "mixer"
     surface: "s8"
     shift: left.shift || right.shift
+  }
+
+  //------------------------------------------------------------------------------------------------------------------
+  //  Mapping Initialization
+  //------------------------------------------------------------------------------------------------------------------
+
+  onMappingLoaded:
+  {
+    left.initializeModule();
+    right.initializeModule();
+  }
+
+  //------------------------------------------------------------------------------------------------------------------
+  //  CROSS-DISPLAY INTERACTION
+  //  Browser should be open on one display only
+  //------------------------------------------------------------------------------------------------------------------
+
+  property bool leftScreenViewValue: left.screenView.value
+  property bool rightScreenViewValue: right.screenView.value
+
+  onLeftScreenViewValueChanged:
+  {
+    if (left.screenView.value == ScreenView.browser && right.screenView.value == ScreenView.browser)
+    {
+      right.screenView.value = ScreenView.deck;
+    }
+  }
+
+  onRightScreenViewValueChanged:
+  {
+    if (left.screenView.value == ScreenView.browser && right.screenView.value == ScreenView.browser)
+    {
+      left.screenView.value = ScreenView.deck;
+    }
   }
 
   //------------------------------------------------------------------------------------------------------------------

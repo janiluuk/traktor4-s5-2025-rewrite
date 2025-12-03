@@ -1,11 +1,39 @@
 # Fixes Applied to Resolve Controller Recognition Issues
 
-## Problem
-When users copied the mod files to Traktor's qml folder, the S5/S8 controller would no longer appear in Traktor Pro 4.1, even after merging the folders correctly. The controller would stay silent with no S5/S8 selection available in Traktor.
+## Current Issue (December 2025)
 
-## Root Cause Identified
+### S8 Controller Object Declaration Order Bug
+
+**Issue**: The S8 controller would not work properly when copying files to Traktor - the controller would stay "mute" (non-responsive) even after correct installation.
+
+**Root Cause**: In `qml/CSI/S8/S8.qml`, object references were declared BEFORE the objects themselves were defined. Specifically:
+- Lines 44-69 (old): Cross-display interaction code and `onMappingLoaded` tried to access `left` and `right` deck objects
+- Lines 92-112 (old): The `left` and `right` Deck_S8Style objects were only created here
+
+This violated QML's initialization order requirements, causing runtime errors when Traktor tried to load the S8 mapping.
+
+**Fix Applied**: Reordered the S8.qml file structure to match the working S5.qml pattern:
+1. Settings and property descriptors first
+2. S8 hardware interface creation
+3. LED brightness wiring
+4. **Deck modules (`left` and `right`) defined BEFORE being referenced**
+5. Mixer module
+6. `onMappingLoaded` handler (now AFTER deck modules exist)
+7. Cross-display interaction (now AFTER deck modules exist)
+8. Deck focus wiring
+
+**Additional Fix**: Changed LED dimmed percentage minimum value from `25` to `0` to match S5 configuration and allow proper LED control.
+
+**Files Modified**:
+- `qml/CSI/S8/S8.qml` - Reordered object declarations to fix initialization order
+
+---
+
+## Previous Issue (Resolved)
 
 ### Incorrect qmldir File in CSI Folder
+
+**Problem**: When users copied the mod files to Traktor's qml folder, the S5/S8 controller would no longer appear in Traktor Pro 4.1, even after merging the folders correctly. The controller would stay silent with no S5/S8 selection available in Traktor.
 
 **Issue**: The CSI folder contained a `qmldir` file that attempted to register S5 and S8 as QML types:
 ```
