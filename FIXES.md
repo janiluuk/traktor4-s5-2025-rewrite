@@ -1,6 +1,28 @@
 # Fixes Applied to Resolve Controller Recognition Issues
 
-## Current Issue (December 2025)
+## Current Issues (December 2025)
+
+### Missing Singleton Declarations in qmldir
+
+**Issue**: `EditMode.qml` and `Message.qml` were defined as singletons (with `pragma Singleton` directive) but were not registered in the `qml/Defines/qmldir` file. This caused QML runtime errors when trying to use these singletons.
+
+**Root Cause**: 
+- `EditMode.qml` is used in `qml/CSI/S5/S5Side.qml` for beatgrid editing states (`EditMode.disabled`, `EditMode.full`, etc.)
+- `Message.qml` is used in `qml/Screens/S8/Views/Deck/Deck.qml` for message type checking (`Message.warning`, `Message.error`)
+- Without qmldir registration, QML cannot resolve these singleton types, causing Traktor to fail loading these files
+
+**Fix Applied**: Added both singletons to `qml/Defines/qmldir`:
+```
+singleton EditMode          EditMode.qml
+singleton Message           Message.qml
+```
+
+**Files Modified**:
+- `qml/Defines/qmldir` - Added missing singleton declarations
+
+---
+
+## Previous Issues (December 2025)
 
 ### S8 Controller Object Declaration Order Bug
 
